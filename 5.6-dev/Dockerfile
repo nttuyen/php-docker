@@ -3,6 +3,7 @@ MAINTAINER  TuyenNT  <nttuyen266@gmail.com>
 
 RUN apt-get update \
 	&& apt-get -y --force-yes install  \
+		sudo	\
 		vim  	\
 		telnet 	\
 		zlibc	\
