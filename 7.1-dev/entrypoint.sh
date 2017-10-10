@@ -1,11 +1,11 @@
 #!/bin/bash
 
 ## Make www-data user can write on folder /var/www/html
-OWNER_USER_ID=$(stat -c "%u" /var/www/html)
-OWNER_GROUP_ID=$(stat -c "%g" /var/www/html)
+OWNER_USER_ID=$(stat -c "%u" /var/www)
+OWNER_GROUP_ID=$(stat -c "%g" /var/www)
 
 if [ "$OWNER_USER_ID" == "0" ] ; then
-	chown www-data:www-data -R /var/www/html
+	chown www-data:www-data -R /var/www
 else
 	usermod -u $OWNER_USER_ID www-data | true
 	groupmod -g $OWNER_GROUP_ID www-data | true
