@@ -25,13 +25,16 @@ RUN apt-get install -y \
         libldb-dev libldap2-dev \
         libxml2-dev libpcre3-dev \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
-    && ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so \    
+    && ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so \  
+    && docker-php-ext-install opcache \
     && docker-php-ext-install -j$(nproc) mcrypt mysqli pdo_mysql bz2 exif gettext intl ldap sockets xsl zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
+    && pecl install apcu \
+    && docker-php-ext-enable apcu
 
 
 RUN echo 'xdebug.remote_autostart=0' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
