@@ -10,6 +10,7 @@ RUN apt-get update \
 		zlibc	\
 		wget	\
 		mysql-client \
+		git \
 		sqlite3 libsqlite3-dev \
 		bzip2 libbz2-dev \
 		libxslt-dev	\
