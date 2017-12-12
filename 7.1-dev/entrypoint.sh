@@ -5,6 +5,8 @@ OWNER_USER_ID=$(stat -c "%u" /var/www)
 OWNER_GROUP_ID=$(stat -c "%g" /var/www)
 
 if [ "$OWNER_USER_ID" == "0" ] ; then
+	usermod -u 1000 www-data | true
+	groupmod -g 1000 www-data | true
 	chown www-data:www-data -R /var/www
 else
 	usermod -u $OWNER_USER_ID www-data | true
