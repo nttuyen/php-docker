@@ -5,12 +5,17 @@ OWNER_USER_ID=$(stat -c "%u" /var/www)
 OWNER_GROUP_ID=$(stat -c "%g" /var/www)
 
 if [ "$OWNER_USER_ID" == "0" ] ; then
-	usermod -u 1000 www-data | true
-	groupmod -g 1000 www-data | true
-	chown www-data:www-data -R /var/www
+	chown ubuntu:ubuntu -R /var/www
 else
-	usermod -u $OWNER_USER_ID www-data | true
-	groupmod -g $OWNER_GROUP_ID www-data | true
+	usermod -u $OWNER_USER_ID ubuntu | true
+	groupmod -g $OWNER_GROUP_ID ubuntu | true
+fi
+
+if [ -z "$APACHE_RUN_USER" ]; then
+    export APACHE_RUN_USER=ubuntu
+fi
+if [ -z "$APACHE_RUN_GROUP" ]; then
+    export APACHE_RUN_GROUP=ubuntu
 fi
 
 

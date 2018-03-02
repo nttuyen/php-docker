@@ -56,6 +56,9 @@ RUN chmod a+x /usr/local/bin/entrypoint.sh \
 	&& mkdir /installer.d \
 	&& mkdir /startup.d
 
+RUN useradd -ms /bin/bash ubuntu
+ADD --chown=ubuntu:ubuntu . /var/www
+
 WORKDIR /var/www/html
 VOLUME ["/var/www/html", "/installer.d", "/startup.d"]
 EXPOSE 80
