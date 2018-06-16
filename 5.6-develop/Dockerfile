@@ -32,7 +32,9 @@ RUN apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN pecl install xdebug-2.5.4 \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
+    && pecl install apcu-4.0.11 \
+    && docker-php-ext-enable apcu
 
 
 RUN echo 'xdebug.remote_autostart=0' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
