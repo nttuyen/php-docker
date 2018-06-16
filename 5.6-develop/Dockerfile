@@ -19,6 +19,7 @@ RUN apt-get update \
 RUN apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
+        libpng-dev \
         libmcrypt-dev \
         libssl-dev \
         libicu-dev \
