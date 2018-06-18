@@ -56,6 +56,8 @@ RUN chmod a+x /usr/local/bin/entrypoint.sh \
 	&& mkdir /installer.d \
 	&& mkdir /startup.d
 
+RUN a2enmod rewrite deflate cache proxy ssl
+
 RUN useradd -ms /bin/bash ubuntu
 RUN chown -R ubuntu:ubuntu /var/www
 
